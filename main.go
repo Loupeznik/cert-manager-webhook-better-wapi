@@ -17,6 +17,7 @@ import (
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/rest"
 
+	cmmeta "github.com/cert-manager/cert-manager/pkg/apis/meta/v1"
 	"github.com/cert-manager/cert-manager/pkg/acme/webhook/apis/acme/v1alpha1"
 	"github.com/cert-manager/cert-manager/pkg/acme/webhook/cmd"
 )
@@ -38,9 +39,9 @@ type betterWapiDNSProviderSolver struct {
 }
 
 type betterWapiDNSProviderConfig struct {
-	BaseURL             string                     `json:"baseUrl"`
-	UserLoginSecretRef  v1alpha1.SecretKeySelector `json:"userLoginSecretRef"`
-	UserSecretSecretRef v1alpha1.SecretKeySelector `json:"userSecretSecretRef"`
+	BaseURL             string                    `json:"baseUrl"`
+	UserLoginSecretRef  cmmeta.SecretKeySelector `json:"userLoginSecretRef"`
+	UserSecretSecretRef cmmeta.SecretKeySelector `json:"userSecretSecretRef"`
 }
 
 type authRequest struct {
@@ -250,7 +251,7 @@ func (c *betterWapiDNSProviderSolver) deleteRecord(baseURL, token, domain, subdo
 	return nil
 }
 
-func (c *betterWapiDNSProviderSolver) getSecret(ref v1alpha1.SecretKeySelector, namespace string) (string, error) {
+func (c *betterWapiDNSProviderSolver) getSecret(ref cmmeta.SecretKeySelector, namespace string) (string, error) {
 	secret, err := c.client.CoreV1().Secrets(namespace).Get(context.Background(), ref.Name, metav1.GetOptions{})
 	if err != nil {
 		return "", fmt.Errorf("failed to get secret %s/%s: %v", namespace, ref.Name, err)
