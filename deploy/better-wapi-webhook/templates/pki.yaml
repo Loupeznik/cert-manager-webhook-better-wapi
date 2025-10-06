@@ -1,0 +1,43 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ include "better-wapi-webhook.servingCertificate" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: {{ include "better-wapi-webhook.name" . }}
+    chart: {{ include "better-wapi-webhook.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: {{ include "better-wapi-webhook.servingCertificate" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: {{ include "better-wapi-webhook.name" . }}
+    chart: {{ include "better-wapi-webhook.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  secretName: {{ include "better-wapi-webhook.servingCertificate" . }}
+  duration: 8760h
+  issuerRef:
+    name: {{ include "better-wapi-webhook.selfSignedIssuer" . }}
+  dnsNames:
+  - {{ include "better-wapi-webhook.fullname" . }}
+  - {{ include "better-wapi-webhook.fullname" . }}.{{ .Release.Namespace }}
+  - {{ include "better-wapi-webhook.fullname" . }}.{{ .Release.Namespace }}.svc
+---
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: {{ include "better-wapi-webhook.selfSignedIssuer" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: {{ include "better-wapi-webhook.name" . }}
+    chart: {{ include "better-wapi-webhook.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  selfSigned: {}

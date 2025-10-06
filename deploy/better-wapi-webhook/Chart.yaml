@@ -1,0 +1,18 @@
+apiVersion: v2
+name: better-wapi-webhook
+version: 0.1.0
+appVersion: 0.1.0
+description: A cert-manager webhook for Better WAPI (WEDOS DNS)
+keywords:
+  - cert-manager
+  - webhook
+  - acme
+  - dns01
+  - wedos
+  - better-wapi
+home: https://github.com/loupeznik/cert-manager-webhook-better-wapi
+sources:
+  - https://github.com/loupeznik/cert-manager-webhook-better-wapi
+maintainers:
+  - name: Dominik Zarsky
+    url: https://github.com/Loupeznik

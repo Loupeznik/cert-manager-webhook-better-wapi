@@ -1,0 +1,10 @@
+webhook
+*.log
+.env
+testdata/my-custom-solver/
+vendor/
+.vscode/
+.idea/
+*.swp
+*.swo
+*~

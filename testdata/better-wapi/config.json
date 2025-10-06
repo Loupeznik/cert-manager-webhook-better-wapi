@@ -1,0 +1,11 @@
+{
+  "baseUrl": "https://api.example.com",
+  "userLoginSecretRef": {
+    "name": "better-wapi-credentials",
+    "key": "login"
+  },
+  "userSecretSecretRef": {
+    "name": "better-wapi-credentials",
+    "key": "secret"
+  }
+}
