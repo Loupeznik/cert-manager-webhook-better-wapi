@@ -10,21 +10,20 @@ This is a cert-manager webhook for Better WAPI, implementing ACME DNS-01 challen
 
 ### Build the webhook
 ```bash
-make build
+docker build -t cert-manager-webhook-better-wapi:latest .
 ```
-
-This builds a Docker image locally.
 
 ### Run conformance tests
 ```bash
-TEST_ZONE_NAME=example.com. make test
+TEST_ZONE_NAME=example.com. go test -v .
 ```
 
 **IMPORTANT**: All cert-manager DNS01 webhooks must pass the conformance test suite.
 
 ### Format and verify code
 ```bash
-make verify
+go fmt ./...
+go vet ./...
 ```
 
 ### Download dependencies

@@ -93,21 +93,19 @@ spec:
 ### Building
 
 ```bash
-make build
+docker build -t cert-manager-webhook-better-wapi:latest .
 ```
 
 ### Testing
 
-To run the conformance test suite:
-
 ```bash
-TEST_ZONE_NAME=example.com. make test
+TEST_ZONE_NAME=example.com. go test -v .
 ```
 
 ### Running locally
 
 ```bash
-go run . --kubeconfig=$HOME/.kube/config
+go run .
 ```
 
 ## How it works
