@@ -4,7 +4,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/cert-manager/cert-manager/test/acme"
+	acmetest "github.com/cert-manager/cert-manager/test/acme"
 )
 
 var (
@@ -12,11 +12,11 @@ var (
 )
 
 func TestRunsSuite(t *testing.T) {
-	fixture := acme.NewFixture(&betterWapiDNSProviderSolver{},
-		acme.SetResolvedZone(zone),
-		acme.SetAllowAmbientCredentials(false),
-		acme.SetManifestPath("testdata/better-wapi"),
+	fixture := acmetest.NewFixture(&betterWapiDNSProviderSolver{},
+		acmetest.SetResolvedZone(zone),
+		acmetest.SetManifestPath("testdata/better-wapi"),
 	)
 
-	fixture.RunConformance(t)
+	fixture.RunBasic(t)
+	fixture.RunExtended(t)
 }
