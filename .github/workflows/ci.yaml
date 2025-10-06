@@ -57,13 +57,6 @@ jobs:
           name: webhook
           path: output
 
-      - name: Create GitHub release
-        uses: softprops/action-gh-release@v1
-        with:
-          files: output/*
-          generate_release_notes: true
-          name: "${{ github.ref_name }}"
-
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
@@ -85,7 +78,14 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            ghcr.io/${{ github.repository }}:${{ steps.version.outputs.version }}
-            ghcr.io/${{ github.repository }}:latest
+            ghcr.io/loupeznik/cert-manager-webhook-better-wapi:${{ steps.version.outputs.version }}
+            ghcr.io/loupeznik/cert-manager-webhook-better-wapi:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
+
+      - name: Create GitHub release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: output/*
+          generate_release_notes: true
+          name: "${{ github.ref_name }}"
