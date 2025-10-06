@@ -1,7 +1,7 @@
 groupName: acme.loupeznik.dev
 
 image:
-  repository: loupeznik/cert-manager-webhook-better-wapi
+  repository: ghcr.io/loupeznik/cert-manager-webhook-better-wapi
   tag: latest
   pullPolicy: IfNotPresent
 

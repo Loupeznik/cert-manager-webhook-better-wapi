@@ -15,7 +15,7 @@ This is a cert-manager webhook solver for [Better WAPI](https://github.com/loupe
 ```bash
 helm install better-wapi-webhook ./deploy/better-wapi-webhook \
   --namespace cert-manager \
-  --set image.repository=loupeznik/cert-manager-webhook-better-wapi \
+  --set image.repository=ghcr.io/loupeznik/cert-manager-webhook-better-wapi \
   --set image.tag=latest
 ```
 

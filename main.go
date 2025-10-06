@@ -38,9 +38,9 @@ type betterWapiDNSProviderSolver struct {
 }
 
 type betterWapiDNSProviderConfig struct {
-	BaseURL              string                       `json:"baseUrl"`
-	UserLoginSecretRef   v1alpha1.SecretKeySelector   `json:"userLoginSecretRef"`
-	UserSecretSecretRef  v1alpha1.SecretKeySelector   `json:"userSecretSecretRef"`
+	BaseURL             string                     `json:"baseUrl"`
+	UserLoginSecretRef  v1alpha1.SecretKeySelector `json:"userLoginSecretRef"`
+	UserSecretSecretRef v1alpha1.SecretKeySelector `json:"userSecretSecretRef"`
 }
 
 type authRequest struct {
