@@ -10,6 +10,11 @@ This is a cert-manager webhook for Better WAPI, implementing ACME DNS-01 challen
 
 ### Build the webhook
 ```bash
+go build -o webhook .
+```
+
+Or build Docker image:
+```bash
 docker build -t cert-manager-webhook-better-wapi:latest .
 ```
 
@@ -19,6 +24,11 @@ TEST_ZONE_NAME=example.com. go test -v .
 ```
 
 **IMPORTANT**: All cert-manager DNS01 webhooks must pass the conformance test suite.
+
+### Linting
+```bash
+golangci-lint run
+```
 
 ### Format and verify code
 ```bash
@@ -30,6 +40,12 @@ go vet ./...
 ```bash
 go mod tidy
 ```
+
+### CI/CD
+
+The GitHub Actions workflow:
+- **On push to branches or PRs**: Runs linting and builds
+- **On push to tags (v*.*.*)**: Creates GitHub release and publishes multi-arch Docker images to GHCR
 
 ## Architecture
 
