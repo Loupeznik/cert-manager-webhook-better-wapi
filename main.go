@@ -17,9 +17,9 @@ import (
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/rest"
 
-	cmmeta "github.com/cert-manager/cert-manager/pkg/apis/meta/v1"
 	"github.com/cert-manager/cert-manager/pkg/acme/webhook/apis/acme/v1alpha1"
 	"github.com/cert-manager/cert-manager/pkg/acme/webhook/cmd"
+	cmmeta "github.com/cert-manager/cert-manager/pkg/apis/meta/v1"
 )
 
 var GroupName = os.Getenv("GROUP_NAME")
@@ -39,7 +39,7 @@ type betterWapiDNSProviderSolver struct {
 }
 
 type betterWapiDNSProviderConfig struct {
-	BaseURL             string                    `json:"baseUrl"`
+	BaseURL             string                   `json:"baseUrl"`
 	UserLoginSecretRef  cmmeta.SecretKeySelector `json:"userLoginSecretRef"`
 	UserSecretSecretRef cmmeta.SecretKeySelector `json:"userSecretSecretRef"`
 }

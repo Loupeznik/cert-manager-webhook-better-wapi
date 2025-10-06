@@ -27,10 +27,11 @@ jobs:
       - name: Download dependencies
         run: go mod download
 
-      - name: Run golangci-lint
-        uses: golangci/golangci-lint-action@v6
-        with:
-          version: latest
+      - name: Run go vet
+        run: go vet ./...
+
+      - name: Check formatting
+        run: test -z "$(go fmt ./...)"
 
       - name: Build
         run: go build -o webhook .

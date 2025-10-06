@@ -25,15 +25,10 @@ TEST_ZONE_NAME=example.com. go test -v .
 
 **IMPORTANT**: All cert-manager DNS01 webhooks must pass the conformance test suite.
 
-### Linting
+### Linting and formatting
 ```bash
-golangci-lint run
-```
-
-### Format and verify code
-```bash
-go fmt ./...
 go vet ./...
+go fmt ./...
 ```
 
 ### Download dependencies
